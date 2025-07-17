@@ -17,21 +17,22 @@ vi.mock("next/navigation", () => ({
 
 // Mock Next.js Image component
 vi.mock("next/image", () => ({
-  default: ({ src, alt, ...props }: any) => {
+  default: ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return React.createElement("img", { src, alt, ...props });
   },
 }));
 
 // Mock next/dynamic
 vi.mock("next/dynamic", () => ({
-  default: (fn: any) => {
+  default: (fn: () => React.ComponentType) => {
     const Component = fn();
     return Component;
   },
 }));
 
 // Mock IntersectionObserver
-global.IntersectionObserver = vi.fn().mockImplementation((callback) => ({
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+global.IntersectionObserver = vi.fn().mockImplementation((_callback: IntersectionObserverCallback) => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
   disconnect: vi.fn(),
@@ -41,7 +42,8 @@ global.IntersectionObserver = vi.fn().mockImplementation((callback) => ({
 }));
 
 // Mock ResizeObserver
-global.ResizeObserver = vi.fn().mockImplementation((callback) => ({
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+global.ResizeObserver = vi.fn().mockImplementation((_callback: ResizeObserverCallback) => ({
   observe: vi.fn(),
   unobserve: vi.fn(),
   disconnect: vi.fn(),

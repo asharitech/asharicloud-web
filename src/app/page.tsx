@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import {
-  Search,
   Home,
   Box,
   ChevronDown,
-  Plus,
   MoreHorizontal,
   GitBranch,
   FileText,
@@ -16,7 +14,6 @@ import {
   Hash,
 } from "lucide-react";
 import * as Tooltip from "@radix-ui/react-tooltip";
-import { cn } from "@/lib/utils";
 
 export default function CopilotPage() {
   const [message, setMessage] = useState("");
