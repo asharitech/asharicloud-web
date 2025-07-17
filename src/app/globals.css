@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: rgb(229 231 235);
+  }
+
+  body {
+    @apply antialiased;
+  }
+}
