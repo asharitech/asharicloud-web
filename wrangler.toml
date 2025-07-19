@@ -9,11 +9,11 @@ workers_dev = true
 
 # Custom domain configuration (automatically handles DNS and SSL)
 [[routes]]
-pattern = "asharicloud.dev"
+pattern = "ashari.cloud"
 custom_domain = true
 
 [[routes]]
-pattern = "www.asharicloud.dev"
+pattern = "www.ashari.cloud"
 custom_domain = true
 
 # Static assets configuration
