@@ -7,6 +7,9 @@
     "dev:fast": "bunx --hot next dev -p ${PORT:-3432} --turbopack",
     "build": "bunx next build",
     "build:analyze": "ANALYZE=true bunx next build",
+    "workers:build": "bunx opennextjs-cloudflare build",
+    "preview": "bunx opennextjs-cloudflare preview",
+    "deploy": "bunx opennextjs-cloudflare deploy",
     "start": "bunx next start -p ${PORT:-3432}",
     "start:prod": "NODE_ENV=production bunx next start -p ${PORT:-3432}",
     "lint": "bunx next lint",
@@ -23,6 +26,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
+    "@opennextjs/cloudflare": "^1.5.1",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-avatar": "^1.1.10",
     "@radix-ui/react-checkbox": "^1.3.2",
@@ -61,6 +65,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^4.6.0",
+    "autoprefixer": "10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "eslint-config-prettier": "^10.1.5",
@@ -71,7 +76,8 @@
     "prettier-plugin-tailwindcss": "^0.6.13",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^3.2.4"
+    "vitest": "^3.2.4",
+    "wrangler": "^4.25.0"
   },
   "bun": {
     "install": {

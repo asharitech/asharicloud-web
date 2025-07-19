@@ -1,0 +1,23 @@
+# Bun configuration for optimal Next.js performance
+
+[install]
+# Cache directory for faster installs
+cache.dir = ".bun-cache"
+# Save text lockfile for better git diffs
+saveTextLockfile = true
+# Auto-install on import failure
+autoInstall = "fallback"
+
+# Test configuration
+[test]
+# Root directory for tests
+root = "./src"
+# Enable coverage by default
+coverage = false
+# Timeout for tests (30 seconds)
+timeout = 30000
+
+# Runtime configuration
+[run]
+# Use Bun shell for scripts
+shell = "bun"

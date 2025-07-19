@@ -17,7 +17,11 @@ vi.mock("next/navigation", () => ({
 
 // Mock Next.js Image component
 vi.mock("next/image", () => ({
-  default: ({ src, alt, ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
+  default: ({
+    src,
+    alt,
+    ...props
+  }: React.ImgHTMLAttributes<HTMLImageElement>) => {
     return React.createElement("img", { src, alt, ...props });
   },
 }));
@@ -31,23 +35,25 @@ vi.mock("next/dynamic", () => ({
 }));
 
 // Mock IntersectionObserver
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-global.IntersectionObserver = vi.fn().mockImplementation((_callback: IntersectionObserverCallback) => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-  root: null,
-  rootMargin: "",
-  thresholds: [],
-}));
+global.IntersectionObserver = vi
+  .fn()
+  .mockImplementation((_callback: IntersectionObserverCallback) => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+    root: null,
+    rootMargin: "",
+    thresholds: [],
+  }));
 
 // Mock ResizeObserver
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-global.ResizeObserver = vi.fn().mockImplementation((_callback: ResizeObserverCallback) => ({
-  observe: vi.fn(),
-  unobserve: vi.fn(),
-  disconnect: vi.fn(),
-}));
+global.ResizeObserver = vi
+  .fn()
+  .mockImplementation((_callback: ResizeObserverCallback) => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  }));
 
 // Mock matchMedia
 Object.defineProperty(window, "matchMedia", {

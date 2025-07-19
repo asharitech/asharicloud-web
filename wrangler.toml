@@ -1,0 +1,32 @@
+name = "prod-asharicloud-web"
+main = ".open-next/worker.js"
+compatibility_date = "2025-03-25"
+compatibility_flags = ["nodejs_compat"]
+account_id = "22362c7324432ad146763a640ca76d00"
+
+# Enable workers.dev for immediate access while custom domain is configured
+workers_dev = true
+
+# Custom domain configuration (automatically handles DNS and SSL)
+[[routes]]
+pattern = "asharicloud.dev"
+custom_domain = true
+
+[[routes]]
+pattern = "www.asharicloud.dev"
+custom_domain = true
+
+# Static assets configuration
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+not_found_handling = "404-page"
+
+# KV namespace for caching (create this in Cloudflare dashboard)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"
+
+# Environment variables
+[vars]
+NODE_ENV = "production"

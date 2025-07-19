@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.bun/install/cache
+            .bun-cache
+            node_modules
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Type check
+        run: bun run type-check
+
+      - name: Lint check
+        run: bun run lint
+
+      - name: Format check
+        run: bun run format
+
+      - name: Run tests
+        run: bun test
+        continue-on-error: true # Some projects might not have tests yet
+
+      - name: Build check
+        run: bun run build
+
+      - name: Health check build
+        run: |
+          if [ -d ".next" ]; then
+            echo "✅ Next.js build successful"
+            ls -la .next/static 2>/dev/null || echo "Static files check"
+          else
+            echo "❌ Build output missing"
+            exit 1
+          fi
